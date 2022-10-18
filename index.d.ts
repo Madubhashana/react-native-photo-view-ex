@@ -1,77 +1,82 @@
 declare module "react-native-photo-view-ex" {
-
-  import * as React from 'react'
+  import * as React from "react";
   import {
-    AccessibilityProperties,
     ImageRequireSource,
     ImageURISource,
     LayoutChangeEvent,
     NativeSyntheticEvent,
     StyleProp,
     TransformsStyle,
-  } from 'react-native'
+  } from "react-native";
+  import { AccessibilityProperties } from "deprecated-react-native-prop-types";
 
-  type PhotoViewResizeMode = "center" | "contain" | "cover" | "fitStart" | "fitEnd" | "stretch"
+  type PhotoViewResizeMode =
+    | "center"
+    | "contain"
+    | "cover"
+    | "fitStart"
+    | "fitEnd"
+    | "stretch";
 
   export interface PhotoViewStyle extends TransformsStyle {
-    bottom?: number,
-    display?: 'flex' | 'none',
-    end?: number,
-    flex?: number,
-    flexGrow?: number,
-    flexShrink?: number,
-    height?: number | string
-    left?: number,
-    margin?: number,
-    marginBottom?: number,
-    marginEnd?: number,
-    marginHorizontal?: number,
-    marginLeft?: number,
-    marginRight?: number,
-    marginStart?: number,
-    marginTop?: number,
-    marginVertical?: number,
-    maxHeight?: number,
-    maxWidth?: number,
-    minHeight?: number,
-    minWidth?: number,
-    opacity?: number,
-    position?: 'absolute' | 'relative',
-    right?: number,
-    start?: number,
-    top?: number,
-    width?: number | string,
-    zIndex?: number,
+    bottom?: number;
+    display?: "flex" | "none";
+    end?: number;
+    flex?: number;
+    flexGrow?: number;
+    flexShrink?: number;
+    height?: number | string;
+    left?: number;
+    margin?: number;
+    marginBottom?: number;
+    marginEnd?: number;
+    marginHorizontal?: number;
+    marginLeft?: number;
+    marginRight?: number;
+    marginStart?: number;
+    marginTop?: number;
+    marginVertical?: number;
+    maxHeight?: number;
+    maxWidth?: number;
+    minHeight?: number;
+    minWidth?: number;
+    opacity?: number;
+    position?: "absolute" | "relative";
+    right?: number;
+    start?: number;
+    top?: number;
+    width?: number | string;
+    zIndex?: number;
   }
 
   // helper for event interface
   export interface PhotoViewEvent<T = {}> extends NativeSyntheticEvent<{}> {
-    nativeEvent: T
+    nativeEvent: T;
   }
 
   export type PhotoViewProgressEvent = PhotoViewEvent<{
-    loaded: number,
-    total: number,
-  }>
+    loaded: number;
+    total: number;
+  }>;
 
   export type PhotoViewScaleEvent = PhotoViewEvent<{
-    scale: number,
-    scaleFactor: number,
-    focusX: number,
-    focusY: number,
-  }>
+    scale: number;
+    scaleFactor: number;
+    focusX: number;
+    focusY: number;
+  }>;
 
   export type PhotoViewTapEvent = PhotoViewEvent<{
-    scale: number,
-    x: number,
-    y: number,
-  }>
+    scale: number;
+    x: number;
+    y: number;
+  }>;
 
   export type PhotoViewViewTapEvent = PhotoViewEvent<{
-    scale: number,
-    x: number,
-    y: number,
-  }>
+    scale: number;
+    x: number;
+    y: number;
+  }>;
 
   export interface PhotoViewProps extends AccessibilityProperties {
     /**
