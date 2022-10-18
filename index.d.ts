@@ -1,6 +1,7 @@
 declare module "react-native-photo-view-ex" {
   import * as React from "react";
   import {
+    AccessibilityProps,
     ImageRequireSource,
     ImageURISource,
     LayoutChangeEvent,
@@ -8,7 +9,6 @@ declare module "react-native-photo-view-ex" {
     StyleProp,
     TransformsStyle,
   } from "react-native";
-  import { AccessibilityProperties } from "deprecated-react-native-prop-types";
 
   type PhotoViewResizeMode =
     | "center"
@@ -49,10 +49,7 @@ declare module "react-native-photo-view-ex" {
     zIndex?: number;
   }
 
-  // helper for event interface
-  export interface PhotoViewEvent<T = {}> extends NativeSyntheticEvent<{}> {
-    nativeEvent: T;
-  }
+  export type PhotoViewEvent<T = {}> = NativeSyntheticEvent<{ nativeEvent: T }>;
 
   export type PhotoViewProgressEvent = PhotoViewEvent<{
     loaded: number;
@@ -78,7 +75,7 @@ declare module "react-native-photo-view-ex" {
     y: number;
   }>;
 
-  export interface PhotoViewProps extends AccessibilityProperties {
+  export interface PhotoViewProps extends AccessibilityProps {
     /**
      * The same as `source` for other React images, except that it does not handle arrays.
      */

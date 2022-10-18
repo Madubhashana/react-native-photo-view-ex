@@ -1,46 +1,39 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { requireNativeComponent, Image, StyleSheet } from "react-native";
-import { ViewPropTypes } from "deprecated-react-native-prop-types";
+import {
+  requireNativeComponent,
+  Image,
+  StyleSheet,
+  ViewProps,
+} from "react-native";
 
-export default class PhotoView extends React.PureComponent {
-  static propTypes = {
-    source: PropTypes.oneOfType([
-      PropTypes.shape({
-        uri: PropTypes.string,
-      }),
-      PropTypes.number,
-    ]).isRequired,
-    loadingIndicatorSource: PropTypes.oneOfType([
-      PropTypes.shape({
-        uri: PropTypes.string,
-      }),
-      PropTypes.number,
-    ]),
-    fadeDuration: PropTypes.number,
-    minimumZoomScale: PropTypes.number,
-    maximumZoomScale: PropTypes.number,
-    resizeMode: PropTypes.oneOf([
-      "center",
-      "contain",
-      "cover",
-      "fitEnd",
-      "fitStart",
-      "stretch",
-    ]),
-    scale: PropTypes.number,
-    zoomTransitionDuration: PropTypes.number,
-    onError: PropTypes.func,
-    onLoad: PropTypes.func,
-    onLoadEnd: PropTypes.func,
-    onLoadStart: PropTypes.func,
-    onProgress: PropTypes.func,
-    onScale: PropTypes.func,
-    onTap: PropTypes.func,
-    onViewTap: PropTypes.func,
-    ...ViewPropTypes,
-  };
+type OwnProps = {
+  source: { uri: string } | number;
+  loadingIndicatorSource: { uri: string } | number;
+  fadeDuration: number;
+  minimumZoomScale: number;
+  maximumZoomScale: number;
+  resizeMode:
+    | "center"
+    | "contain"
+    | "cover"
+    | "fitEnd"
+    | "fitStart"
+    | "stretch";
+  scale: number;
+  zoomTransitionDuration: number;
+  onError: Function;
+  onLoad: Function;
+  onLoadEnd: Function;
+  onLoadStart: Function;
+  onProgress: Function;
+  onScale: Function;
+  onTap: Function;
+  onViewTap: Function;
+} & ViewProps;
 
+export const PhotoViewAndroid = requireNativeComponent("PhotoViewAndroid");
+
+export default class PhotoView extends React.PureComponent<OwnProps> {
   render() {
     const {
       onError,
@@ -61,16 +54,6 @@ export default class PhotoView extends React.PureComponent {
     const loadingIndicatorSource = Image.resolveAssetSource(
       _loadingIndicatorSource
     );
-
-    if (source && source.uri === "") {
-      console.warn("source.uri should not be an empty string");
-    }
-
-    if (props.src) {
-      console.warn(
-        "The <PhotoView> component requires a `source` property rather than `src`."
-      );
-    }
 
     if (source && source.uri) {
       const { width, height, ...src } = source;
@@ -119,8 +102,8 @@ const cfg = {
   },
 };
 
-const PhotoViewAndroid = requireNativeComponent(
-  "PhotoViewAndroid",
-  PhotoView,
-  cfg
-);
+// const PhotoViewAndroid = requireNativeComponent(
+//   "PhotoViewAndroid",
+//   PhotoView,
+//   cfg
+// );
